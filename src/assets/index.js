@@ -30,9 +30,9 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
-import emily from "/portrait-emily-foster.png";
-import antonio from "/portrait-antonio-rossi.png";
-import lea from "/portrait-lea-dupont.png";
+import emily from "./portrait-emily-foster.png";
+import antonio from "./portrait-antonio-rossi.png";
+import lea from "./portrait-lea-dupont.png";
 
 export {
   emily,
