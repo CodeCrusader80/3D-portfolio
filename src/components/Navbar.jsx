@@ -18,14 +18,14 @@ const Navbar = () => {
          setActive("");
          window.scrollTo(0, 0);
        }}>
-         <img src={logo} alt={"logo"} className={"ml-[-28px] w-[70px] h-[70px] p-0 object-contain"}/>
-         <p className={"text-white text-[15px] font-bold cursor-pointer flex"}>Mathieu &nbsp; <span className={"sm:block hidden"}>| Developer</span></p>
+         <img src={logo} alt={"logo"} className={"w-20 h-20 p-0 object-contain"}/>
+         <p className={"text-white md:text-[20px] font-bold cursor-pointer flex sm:text-[15px]"}>Mathieu &nbsp; <span className={"sm:block hidden"}>| Developer</span></p>
        </Link>
        <ul className={"list-none hidden sm:flex flex-row gap-10"}>
          {navLinks.map((link) => (
              <li
               key={link.id}
-              className={`${ active === link.title ? "text-white" : "text-secondary"} hover:text-white text-[15px] font-medium cursor-pointer`}
+              className={`${ active === link.title ? "text-white" : "text-secondary"} hover:text-white md:text-[20px] sm:text-[15px] font-medium cursor-pointer`}
               onClick={() => setActive(link.title)}
              >
                <a href={`#${link.id}`}>{link.title}</a>
