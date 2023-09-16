@@ -11,17 +11,17 @@ const Computers = ({isMobile}) => {
       <hemisphereLight intensity={0.85} groundColor={"black"}/>
       <pointLight intensity={1}/>
       <spotLight
-        position={[-20, 50, 10]}
-        angle={0.12}
+        position={[10, 10, 10]}
+        angle={0.15}
         penumbra={1}
-        intensity={1}
-        castShadow={false}
+        intensity={1000}
+        castShadow=""
         shadow-mapSize={1024}
       />
       <primitive
         object={computer.scene}
-        scale={0.75}
-        position={[0, -4.25, -1.5]}
+        scale={isMobile ? 0.7 : 0.75}
+        position={ isMobile ? [0, -5, -2.2] : [0, -4.25, -1.5]}
         rotation={[-0.01, 0.2, -0.1]}
       />
     </mesh>
@@ -32,16 +32,16 @@ const ComputersCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const mediaQuerry = window.matchMedia("(max-width: 500px)");
-        setIsMobile(mediaQuerry.matches);
+        const mediaQuery = window.matchMedia("(max-width: 500px)");
+        setIsMobile(mediaQuery.matches);
 
         const handleMediaQueryChange = (event) => {
             setIsMobile(event.matches);
         };
-        mediaQuerry.addEventListener("change", handleMediaQueryChange);
+        mediaQuery.addEventListener("change", handleMediaQueryChange);
 
         return () => {
-            mediaQuerry.removeEventListener("change", handleMediaQueryChange)
+            mediaQuery.removeEventListener("change", handleMediaQueryChange)
         };
     }, []);
 
@@ -50,7 +50,7 @@ const ComputersCanvas = () => {
       <Canvas
       frameloop={"demand"}
       shadows
-      camera={{position: [20, 3, 5], fov: 25}}
+      camera={{ position: [20, 3, 5], fov: 15 }}
       gl={{preserveDrawingBuffer: true}}
       >
         <Suspense fallback={<CanvasLoader/>}>
