@@ -11,14 +11,14 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary gap-4`}
     >
      <div className={"w-full flex justify-between items-center max-w-7xl mx-auto"}>
        <Link to={"/"} className={"flex items-center"} onClick={() => {
          setActive("");
          window.scrollTo(0, 0);
        }}>
-         <img src={logo} alt={"logo"} className={"w-[100px] h-[100px] object-contain"}/>
+         <img src={logo} alt={"logo"} className={"ml-[-35px] w-[90px] h-[90px] p-0 object-contain"}/>
          <p className={"text-white text-[15px] font-bold cursor-pointer flex"}>Mathieu &nbsp; <span className={"sm:block hidden"}>| Developer</span></p>
        </Link>
        <ul className={"list-none hidden sm:flex flex-row gap-10"}>
