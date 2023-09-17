@@ -1,4 +1,3 @@
-import {redirect} from "react-router-dom";
 
 export const textVariant = (delay) => {
     return {
