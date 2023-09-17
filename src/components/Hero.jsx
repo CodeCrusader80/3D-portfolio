@@ -1,6 +1,7 @@
 import {motion} from "framer-motion";
 import {styles} from "../styles.js";
 import {ComputersCanvas} from "./canvas";
+import {INFINITY} from "three/nodes";
 
 
 const Hero = () => {
@@ -20,6 +21,24 @@ const Hero = () => {
         </div>
       </div>
         <ComputersCanvas/>
+
+        <div className={"absolute xs:bottom-1 bottom-10 w-full flex justify-center items-center"}>
+            <a href={"#about"}>
+                <div className={"w-[30px] h-[45px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2"}>
+                    <motion.div
+                        animate={{
+                            y:[0, 10, 0]
+                        }}
+                        transition={{
+                            duration: 1.5,
+                            repeat: INFINITY,
+                            repeatType: 'loop'
+                        }}
+                        className={"w-5 h-2 rounded-full bg-secondary mb-1"}
+                    />
+                </div>
+            </a>
+        </div>
     </section>
   )
 }
