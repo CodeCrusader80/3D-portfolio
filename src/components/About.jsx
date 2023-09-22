@@ -1,4 +1,3 @@
-import React from 'react'
 import {Tilt} from "react-tilt";
 import {motion} from "framer-motion";
 import {styles} from "../styles.js";
@@ -8,10 +7,10 @@ import {SectionWrapper} from "../hoc";
 
 const ServiceCard = ({index, title, icon}) => {
     return(
-        <Tilt className={"xs:w-[200px] w-full"}>
+        <Tilt className={"xs:w-[230px] w-full"}>
             <motion.div
                 variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
-                className={"w-full green-pink-gradient p–[1px] rounded-[20px] shadow-card"}
+                className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
             >
                 <div
                     options={{
