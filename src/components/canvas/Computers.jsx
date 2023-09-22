@@ -1,13 +1,20 @@
 import React, {Suspense, useEffect, useRef, useState} from 'react'
-import {Canvas} from "@react-three/fiber";
+import {Canvas, useFrame} from "@react-three/fiber";
 import {OrbitControls, Preload, useGLTF} from "@react-three/drei";
 import CanvasLoader from '../Loader.jsx';
 
-const Computers = ({isMobile}) => {
-  const computer = useGLTF('./desktop_pc/scene.gltf')
+const Computers = ({ isMobile }) => {
+    const computer = useGLTF('./desktop_pc/scene.gltf');
+    const meshRef = useRef();
+
+    useFrame(({ clock }) => {
+        if (isMobile) {
+           computer.scene.rotation.y = 0.5 * clock.getElapsedTime();
+        }
+    });
 
   return (
-    <mesh>
+    <mesh ref={meshRef}>
       <hemisphereLight intensity={0.85} groundColor={"black"}/>
       <pointLight intensity={1}/>
       <spotLight
@@ -20,8 +27,8 @@ const Computers = ({isMobile}) => {
       />
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.25 : 0.42}
-        position={ isMobile ? [0, -1, -0.5] : [0, -2, -1]}
+        scale={isMobile ? 0.25 : 0.40}
+        position={ isMobile ? [0, -1.5, -0.3] : [0, -2, -1]}
         rotation={[-0.01, 0.1, -0.1]}
       />
     </mesh>
@@ -45,7 +52,6 @@ const ComputersCanvas = () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange)
         };
     }, []);
-
     useEffect(() => {
         if (controlsRef.current) {
             controlsRef.current.enabled = !isMobile;
@@ -54,17 +60,19 @@ const ComputersCanvas = () => {
 
   return (
       <Canvas
-      frameloop={"demand"}
+      frameloop={"always"}
       shadows
       camera={{position: [20, 3, 5], fov: 15 }}
       gl={{preserveDrawingBuffer: true}}
       >
         <Suspense fallback={<CanvasLoader/>}>
-          <OrbitControls
-              enableZoom={false}
-              maxPolarAngle={Math.PI / 2}
-              minPolarAngle={Math.PI / 2}
-          />
+            { !isMobile && (
+                <OrbitControls
+                    enableZoom={false}
+                    maxPolarAngle={Math.PI / 2}
+                    minPolarAngle={Math.PI / 2}
+                />
+            )}
           <Computers isMobile={isMobile}/>
         </Suspense>
 
