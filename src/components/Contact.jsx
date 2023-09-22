@@ -14,14 +14,20 @@ const Contact = () => {
     email: '',
     message: '',
   })
+  const isValidInput = (text) => {
+        const regex = /^[a-zA-Z0-9\s.,'@!?éèêëàâäôöûüçÉÈÊËÀÂÄÔÖÛÜÇ]*$/;
+        return regex.test(text);
+    };
 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
 
-    setForm({...form, [name]: value})
-  }
+      if (isValidInput(value)) {
+          setForm({ ...form, [name]: value });
+      }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,6 +77,7 @@ const Contact = () => {
             <input
                 type={"text"}
                 name={"name"}
+                required={true}
                 value={form.name}
                 onChange={handleChange}
                 placeholder={"What's your name?"}
@@ -82,6 +89,7 @@ const Contact = () => {
             <input
                 type={"email"}
                 name={"email"}
+                required={true}
                 value={form.email}
                 onChange={handleChange}
                 placeholder={"What's your email?"}
@@ -91,6 +99,7 @@ const Contact = () => {
           <label className={"flex flex-col"}>
             <span className={"text-white font-medium mb-4"}>Your Message</span>
             <textarea
+                required={true}
                 rows={7}
                 name={"message"}
                 value={form.message}

@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect, useState} from 'react'
+import React, {Suspense, useEffect, useRef, useState} from 'react'
 import {Canvas} from "@react-three/fiber";
 import {OrbitControls, Preload, useGLTF} from "@react-three/drei";
 import CanvasLoader from '../Loader.jsx';
@@ -30,6 +30,7 @@ const Computers = ({isMobile}) => {
 
 const ComputersCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const controlsRef = useRef();
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -45,6 +46,11 @@ const ComputersCanvas = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (controlsRef.current) {
+            controlsRef.current.enabled = !isMobile;
+        }
+    }, [isMobile]);
 
   return (
       <Canvas

@@ -20,7 +20,7 @@ const Hero = () => {
             </p>
         </div>
       </div>
-        <ComputersCanvas className={"pointer-events-auto"}/>
+        <ComputersCanvas className={""}/>
 
         <div className={"absolute w-full flex justify-center items-center"}>
             <a href={"#about"}>
